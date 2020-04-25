@@ -42,7 +42,7 @@ Down-sampled reads and some associated annotation are provided for you in what G
 
 If you click through to the history itself, you'll find the 'toy_example_thymus.h5ad' file at the bottom. This file contains concatenated matrix from 5 individual 10X lanes.
 
-Sample number | Donor | 10X chemistry
+Batch | Donor | 10X chemistry
 --------------|-------|--------------
 1|F21|3'
 2|F29|3'
@@ -50,6 +50,26 @@ Sample number | Donor | 10X chemistry
 4|F30|3'
 5|F30|5'
 
+All datasets have been mapped with [cellranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger), which is alignment tool provided by 10X. The resulting count matrix have been loaded using [scanpy.read](https://icb-scanpy.readthedocs-hosted.com/en/stable/api/scanpy.read.html#scanpy.read) function and concatenated into single anndata object (h5ad format).
+
+Metadata contains following contents:
+
+ * donor: human donor ID
+ * method: 10X chemistry used. 5GEX (10X 5') and 3GEX (10X 3' v2)
+ * batch: donor x method
+
+For general QC, we have calculated some basic features, which are as following:
+
+ * n_genes: number of total genes detected per cell
+ * n_loggenes: log10(n_genes)
+ * n_counts: number of total UMI counts per cell
+ * n_logcounts: log10(n_counts)
+ * mito: fraction of total UMI counts assigned to mitochondrial genes to total UMI counts
+ * doublet_scores: doublet score calculated by [scrublet](https://github.com/AllonKleinLab/scrublet) [(Wolock 2019)](https://www.cell.com/cell-systems/pdfExtended/S2405-4712(18)30474-5)
+ 
+The dataset also contains cell type annotation, which was taken from thymus cell atlas, to aid visualistion of batch effect
+
+ * celltype
 
 
 

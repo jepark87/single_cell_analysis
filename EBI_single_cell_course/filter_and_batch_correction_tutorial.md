@@ -23,7 +23,7 @@ For the sake of time, we will start with toy example (*.h5ad format) which have 
 
 In the previous session, you have learned how to generate matrix files from fastq files. This session will guide you to how to check the quality of these matrix files and analyse them. This includes: checking the quality of the generated matrix files, preprecessing the data for analysis, correcting batch effect and visualising them by clustering. This is most basic workflow that you will run in any single-cell data analysis.
 
-There are many packages, which have collection of functions for running this workflow. Such as Seurat(https://satijalab.org/seurat/), [Scanpy](https://icb-scanpy.readthedocs-hosted.com/en/stable/), [Monocle3](https://cole-trapnell-lab.github.io/monocle3/), [Scater](http://bioconductor.org/packages/release/bioc/html/scater.html). They offer streamlined workflow and tutorials that can be easily followed.
+There are many packages, which have collection of functions for running this workflow. Such as [Seurat](https://satijalab.org/seurat/), [Scanpy](https://icb-scanpy.readthedocs-hosted.com/en/stable/), [Monocle3](https://cole-trapnell-lab.github.io/monocle3/), [Scater](http://bioconductor.org/packages/release/bioc/html/scater.html). They offer streamlined workflow and tutorials that can be easily followed.
 
 Today, we will follow the [scanpy workflow](https://scanpy-tutorials.readthedocs.io/en/latest/pbmc3k.html). Scanpy is python package based on object called [anndata](https://icb-anndata.readthedocs-hosted.com/en/stable/anndata.AnnData.html), which is data storage format made easy to store metadata and processed data from each stages.
 
@@ -40,8 +40,22 @@ Down-sampled reads and some associated annotation are provided for you in what G
 ![Select the specific history](specific_history.png)
 
 
+If you click through to the history itself, you'll find the 'toy_example_thymus.h5ad' file at the bottom. This file contains concatenated matrix from 5 individual 10X lanes.
 
-If you click through to the history itself, you'll see that we've provided you with two 1 million-read FASTQ files, a transcriptome in FASTA format and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
+Sample number | Donor | 10X chemistry
+--------------|-------|--------------
+1|F21|3'
+2|F29|3'
+3|F29|5'
+4|F30|3'
+5|F30|5'
+
+
+
+
+
+
+we've provided you with two 1 million-read FASTQ files, a transcriptome in FASTA format and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
 
 ![import the history](import_history.png)
 

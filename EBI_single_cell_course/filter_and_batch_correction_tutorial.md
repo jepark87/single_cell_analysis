@@ -9,26 +9,25 @@ By the end of this short tutorial should you should understand:
  * how to perform demensionality reduction (PCA, umap) and clustering
  * how to perform batch correction
 
-## Originally, you will need
+## Input files required
+
+You will most likely have multiple files from different experiments (like control vs treatment, multiple samples collected from different individuals, or run on different single-cell methods), which needs to be concatenated
 
  * matrix.mtx, barcodes.tsv, genes.tsv files from alignment tool (star-solo, cellranger, salmon alevin etc)
  
-You will most likely have multiple files from different experiments (like control vs treatment, multiple samples collected from different individuals, or run on different single-cell methods).</br> To model this situation, we will start with toy example (*.h5ad format) which have concatenated multiple single-cell experiment, containing data from several donors and two different 10X single-cell chemistries.
+For the sake of time, we will start with toy example (*.h5ad format) which have concatenated multiple single-cell experiment, containing data from several donors and two different 10X single-cell chemistries.
 
  * adata.h5ad file
 
-
-We'll be using pre-prepared example inputs
-
 # Introduction
 
-This session will show you the principles of the initial phase of single-cell RNA-seq analysis: generating expression measures in a matrix. We'll concentrate on droplet-based (rather than plate-based) methodology, since this is the process with most differences with respect to conventional approaches developed for bulk RNA-seq.
+In the previous session, you have learned how to generate matrix files from fastq files. This session will guide you to how to check the quality of these matrix files and analyse them. This includes: checking the quality of the generated matrix files, preprecessing the data for analysis, correcting batch effect and visualising them by clustering. This is most basic workflow that you will run in any single-cell data analysis.
 
-Droplet-based data consists of three components: cell barcodes, unique molecular identifiers (UMIs) and cDNA reads. To generate cell-wise quantifications we need to:
+There are many packages, which have collection of functions for running this workflow. Such as Seurat(https://satijalab.org/seurat/), [Scanpy](https://icb-scanpy.readthedocs-hosted.com/en/stable/), [Monocle3](https://cole-trapnell-lab.github.io/monocle3/), [Scater](http://bioconductor.org/packages/release/bioc/html/scater.html). They offer streamlined workflow and tutorials that can be easily followed.
 
- 1. Process cell barcodes, working out which ones correspond to 'real' cells, which to sequencing artefacts, and possibly correct any barcodes likely to be the product of sequencing errors by comparison to more frequent sequences.
- 2. Map biological sequences to the reference genome or transcriptome.
- 3. 'De-duplicate' using the UMIs.
+Today, we will follow the [scanpy workflow](https://scanpy-tutorials.readthedocs.io/en/latest/pbmc3k.html). 
+
+
 
 This used to be a complex process involving multiple algorithms, or was performed with technology-specific methods (such as 10X's 'Cellranger' tool)  but is now much simpler thanks to the advent of a few new methods. When selecting methodology for your own work you should consider:
 

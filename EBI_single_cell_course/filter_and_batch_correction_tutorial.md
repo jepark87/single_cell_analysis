@@ -81,7 +81,7 @@ We will start by visualising the distribution of number of genes detected per ce
 
 ![Step1](Step1.png)
 
-```
+
 
  1. Search 'plot' from Galaxy search toolbar
  2. From 'Scanpy' package, click 'Plot with scanpy'
@@ -89,7 +89,7 @@ We will start by visualising the distribution of number of genes detected per ce
  4. Go to __Details__, set __Method used for plotting__ as __Generic: Scatter plot along observations or variable axes, using 'pl.scatter'__. 
  5. set __x- and y- coordinates__ with __'n_logcounts', 'n_loggenes'__ or __'n_loggenes', 'mito'__ or __'n_loggenes', 'doublet_scores'__'''
  
- ```
+
 
 ![Result1](Result1.png)
 
@@ -105,12 +105,12 @@ You can notice high doublet scores for some droplets. You would generally expect
 
 Scatter plot is good to compare relationship between QC measures. However, it is often difficult to compare distributions across multiple samples. For this purpose, let's draw some violin plots. You can simply change the step 4 and step 5 from above to:
 
-```
+
 
  4. Go to __Details__, set __Method used for plotting__ as __Generic: Violin plot, using 'pl.violin'__.
  5. Set __Keys for accessing variables__ as __Subset of variables in 'adata.var_names' or fields of '.obs'__ and provide comma separte list of __n_loggenes,n_logcounts,mito__. Also, set __The key of the observation grouping to consider__ as __batch__.
 
-```
+
 
 > Q: Which sample has the lowest coverage? Are there any difference between 10X chemistries?
 
@@ -118,12 +118,12 @@ Scatter plot is good to compare relationship between QC measures. However, it is
 
 After visual inspection, We have come up with following conclusion: _Let's remove any droplets with less than 500 n_genes, 1000 n_counts, or higher than 0.2 mito fraction_. This can be simply achieved by built in function in scanpy called __filter_cells__. We will also remove genes that are not expressed in this dataset, by taking genes which are detected in at least 3 cells. There's another function for this, which is called __filter_genes__.
 
-```
 
  1. Go to 'Tools' and within 'Scanpy' package, click 'filter_cells' or 'filter_genes'
  2. Set up consecutive filters. Set __parameters to select genes (cells) to keep__ in __Details__ as suggested above.
- 
-```
+ 3. Click each  
+
+
 
 
 To generate gene-level quantifications based on transcriptome quantification, Alevin and similar tools require a conversion between transcript and gene identifiers, which we can derive from the annotations available in genome resources such as Ensembl. The transcripts in this list need to match the ones we used in the sequences reference. The study we're working with here added spike-ins to their samples, so when we created the index above in preparation for this tutorial, we combined sequence information for the biological sequences and the spike-ins. So now we need to generate a transcript to gene mapping with both types of sequence.

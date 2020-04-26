@@ -81,15 +81,11 @@ We will start by visualising the distribution of number of genes detected per ce
 
 ![Step1](Step1.png)
 
-'''
-
- 1. Search 'plot' from Galaxy search toolbar
+'''1. Search 'plot' from Galaxy search toolbar
  2. From 'Scanpy' package, click 'Plot with scanpy'
  3. Link h5ad input with plot function
  4. Go to __Details__, set __Method used for plotting__ as __Generic: Scatter plot along observations or variable axes, using 'pl.scatter'__. 
- 5. set __x- and y- coordinates__ with __'n_logcounts', 'n_loggenes'__ or __'n_loggenes', 'mito'__ or __'n_loggenes', 'doublet_scores'__
-
-'''
+ 5. set __x- and y- coordinates__ with __'n_logcounts', 'n_loggenes'__ or __'n_loggenes', 'mito'__ or __'n_loggenes', 'doublet_scores'__'''
 
 ![Result1](Result1.png)
 

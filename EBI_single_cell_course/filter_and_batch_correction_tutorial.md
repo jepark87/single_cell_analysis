@@ -71,27 +71,40 @@ The dataset also contains cell type annotation, which was taken from thymus cell
 
  * celltype
 
-
-
-
-
-we've provided you with two 1 million-read FASTQ files, a transcriptome in FASTA format and GTF files related to the gene annotations and to a set of spike-ins. You can then import the history to use yourself:
-
-![import the history](import_history.png)
-
-This is what the your history will look like:
-
-![see the imported history](imported_history.png)
-
-> EXERCISE: Have a look at the files you now have in your history. Which of the FASTQ files do you think contains the barcode sequences? Given the chemistry this study should have, are the barcode/UMI reads the correct length? (hint: check https://teichlab.github.io/scg_lib_structs/methods_html/10xChromium3.html)
-
 ## 2. The workflow
 
-Alevin collapses the steps involved in dealing with dscRNA-seq into a single process, so much of what we'll cover is 'plumbing' of inputs, and interpretation. 
+### 1. Checking the quality of data
 
-### 1. Generate a transcriptome index
+So, we have data that has just come out from mapping pipeline. Now we need to check whether the run has been successful. There are many steps that can go wrong. Your cells might have died before loading, which would yield low UMI counts from cells and higher background. Sometimes cell counting might have failed, resulting in over-loading. In this case, you will have too many cells and doublets. Thus, it's important to perform general QC for each run. Otherwise, your end result will be deteriorated by these low-quality signals from failed run.
 
-Normally, you would need to generate an index for your transcriptome of interest, containing all sequences likely to be present in your experiment's read data. Generating that index is too time-consuming to do as part of this sesssion, so we'll using using one we made earlier. But have a look at the fasta format sequences, which are the same as the ones we used to build the index. 
+We will start by visualising the distribution of number of genes detected per cell, number of total UMI counts per cell, and fraction of mitochondiral mRNAs.
+
+![Step1](Step1.png)
+
+ 1. Search 'plot' from Galaxy search toolbar
+ 2. From 'Scanpy' package, click 'Plot with scanpy'
+ 3. Link h5ad input with plot function
+ 4. Go to _Details_, set _Method used for plotting_ as _Generic: Scatter plot along observations or variable axes, using 'pl.scatter'_. 
+ 5. set _x- and y- coordinates_ with _'n_logcounts','n_loggenes'_ or _'n_loggenes','mito'_ or _'n_loggenes','doublet_scores'_
+
+![Result1](Result1.png)
+
+> Q: Which threshold would you use to filter bad cells? 
+
+The plots show distribution of basic QC measures and their relationship. As expected, n_counts and n_genes are proportional. At the same time, you could notice droplets with disproportionally less n_genes compared to n_counts, which also have higher mito fraction. This is often indicative of empty droplet which was mistaken from initial filter and you would want to remove them.
+
+In this dataset, most cells with good gene number coverge (high n_genes) contain less than 20% of mitochondrial mRNA. If you see mitochondrial fraction much higher than this (like 50~80%), this is probably resulting from dying cells.
+
+You can notice high doublet scores for some droplets. You would generally expect ~4% doublet rate if you aimed to recover 5000 cells. Generally, doublets have higher n_genes, as they contain genes from both cell types. But some cells do have more n_genes and other cell in general. So you should be careful about setting doublet filter based on n_genes. (Also, some cells have significanly less n_genes compared to others. So be careful for lower bound filters too!)
+
+![Result2](Result2_violin.png)
+
+Scatter plot is good to compare relationship between QC measures. However, it is often difficult to compare distributions across multiple samples. For this purpose, let's draw some violin plots. You can simply change the step 4 and step 5 from above to:
+
+ 4. Go to 'Details', set _Method used for plotting_ as _Generic: Violin plot, using 'pl.violin'_.
+ 5. Set _Keys for accessing variables_ as _Subset of variables in 'adata.var_names' or fields of '.obs'_ and provide comma separte list of _n_loggenes,n_logcounts,mito_. Also, set _The key of the observation grouping to consider_ as _donor_ or _method_.
+
+
 
 ### 2. Generate a transcript to gene mapping
 

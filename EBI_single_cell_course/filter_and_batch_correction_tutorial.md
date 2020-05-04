@@ -155,6 +155,7 @@ For PCA, it's important to scale all features (genes) to have same variance and 
  7. Run with default
  
  ![Result5](Result_pca.png)
+ ![Result6](Result_pca_vr.png)
  
 The first scatter plots describes what kind of variables are mainly explained by PC1 and PC2. Second pca_variance_ratio plot shows how much of total variance is explained by each PC. This give you visual inspection tool to determine how many PCs to keep.
 

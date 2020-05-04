@@ -33,12 +33,7 @@ We'll be using a setup based on Galaxy to illustrate the process for teaching pu
 
 The data you will process today is small toy example taken from [human thymus dataset](https://zenodo.org/record/3711134#.XqPKJVNKhrB). This study is good example for batch correction as the data has collected from multiple donors and using two different 10X chemistries (3' v2 chemistry and 5' chemistry).
 
-Down-sampled reads and some associated annotation are provided for you in what Galaxy calls a 'history'. Access the shared history:
-
-![Getting to the shared data](goto_histories.png)
-
-![Select the specific history](specific_history.png)
-
+Down-sampled reads and some associated annotation are provided for you in what Galaxy calls a 'history'. Access the shared history.
 
 If you click through to the history itself, you'll find the 'toy_example_thymus.h5ad' file at the bottom. This file contains concatenated matrix from 5 individual 10X lanes.
 
@@ -79,7 +74,7 @@ So, we have data that has just come out from mapping pipeline. Now we need to ch
 
 We will start by visualising the distribution of number of genes detected per cell, number of total UMI counts per cell, and fraction of mitochondiral mRNAs.
 
-![Step1](Step1.png)
+![Step1](1_scatter.png)
 
  1. Search 'plot' from Galaxy search toolbar
  2. From 'Single-cell' package, click 'Plot with scanpy'

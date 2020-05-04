@@ -191,7 +191,7 @@ We prepared simple case of batch effect so you don't expect to encounter such pr
  4. Run again 'RunPCA', 'ComputeGraph', 'RunUMAP', 'Plot:UMAP' as above.
  5. Compare result from regressed data with the previous one.
 
-![Result7](Result_umap_regression.png)
+![Result7](Result_umap_regression(1).png)
 
 Now cell coming from different bath is mixed well and they are positioned based on celltype! You are all set to look into this data and play with it. While we have pre-supplied cell type annotations for the tutorial, for your new data, you will start here to cluster cells and assign cell type annotations to them.
 

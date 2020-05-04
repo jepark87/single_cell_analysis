@@ -91,7 +91,7 @@ In this dataset, most cells with good gene number coverge (high n_genes) contain
 
 You can notice high doublet scores for some droplets. You would generally expect ~4% doublet rate if you aimed to recover 5000 cells. Generally, doublets have higher n_genes, as they contain genes from both cell types. But some cells do have more n_genes and other cell in general. So you should be careful about setting doublet filter based on n_genes. (Also, some cells have significanly less n_genes compared to others. So be careful for lower bound filters too!)
 
-![Result2](2_violin_result.png)
+![Result2](Result2.png)
 
 Scatter plot is good to compare relationship between QC measures. However, it is often difficult to compare distributions across multiple samples. For this purpose, let's draw some violin plots. You can simply change the step 4 and step 5 from above to:
 
@@ -106,7 +106,7 @@ Scatter plot is good to compare relationship between QC measures. However, it is
 
 After visual inspection, We have come up with following conclusion: _Let's remove any droplets with less than 500 n_genes, 1000 n_counts, or higher than 0.2 mito fraction_. This can be simply achieved by built in function in scanpy called __filter_cells__. We will also remove genes that are not expressed in this dataset, by taking genes which are detected in at least 3 cells. There's another function for this, which is called __filter_genes__.
 
-![Step3](2_filter.png)
+![Step3](Step3.png)
 
  1. Go to 'Tools' and within 'Scanpy' package, click 'filter_cells' or 'filter_genes'
  2. Set up consecutive filters. Set __parameters to select genes (cells) to keep__ in __Details__ as suggested above.

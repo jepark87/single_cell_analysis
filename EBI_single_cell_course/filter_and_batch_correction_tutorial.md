@@ -91,7 +91,7 @@ In this dataset, most cells with good gene number coverge (high n_genes) contain
 
 You can notice high doublet scores for some droplets. You would generally expect ~4% doublet rate if you aimed to recover 5000 cells. Generally, doublets have higher n_genes, as they contain genes from both cell types. But some cells do have more n_genes and other cell in general. So you should be careful about setting doublet filter based on n_genes. (Also, some cells have significanly less n_genes compared to others. So be careful for lower bound filters too!)
 
-![Result2](Result2_violin.png)
+![Result2](2_violin_result.png)
 
 Scatter plot is good to compare relationship between QC measures. However, it is often difficult to compare distributions across multiple samples. For this purpose, let's draw some violin plots. You can simply change the step 4 and step 5 from above to:
 
@@ -106,13 +106,11 @@ Scatter plot is good to compare relationship between QC measures. However, it is
 
 After visual inspection, We have come up with following conclusion: _Let's remove any droplets with less than 500 n_genes, 1000 n_counts, or higher than 0.2 mito fraction_. This can be simply achieved by built in function in scanpy called __filter_cells__. We will also remove genes that are not expressed in this dataset, by taking genes which are detected in at least 3 cells. There's another function for this, which is called __filter_genes__.
 
-![Step3](Step3.png)
+![Step3](2_filter.png)
 
  1. Go to 'Tools' and within 'Scanpy' package, click 'filter_cells' or 'filter_genes'
  2. Set up consecutive filters. Set __parameters to select genes (cells) to keep__ in __Details__ as suggested above.
  3. Check for the dimension of AnnData object (n_obs x n_vars) by clicking the result from each step.
- 
-![Result3](Result3.png)
 
 > Q: How many cells and genes have been filtered?
 
@@ -132,15 +130,7 @@ Currently there are nearly 20,000 expressed genes in your matrix (n_vars). Howev
  1. Go to 'Tools' and within 'Scanpy' package, click 'FindVariableGenes'.
  2. Run this with default parameters.
  
- You can visualise the process by __Plot__ function.
- 
- 1. From 'Scanpy' package, click 'Plot with scanpy'
- 2. Set __Method used for plotting__ as __Preprocessing: Plot dispersions versus means for genes, using 'pl.highly_variable_genes'__. 
- 3. Run with default options
- 
- ![Result4](Result_hvg.png)
- 
- .. describe
+ > Q: How many genes have selected as highly variable genes?
  
 ### 5. Scaling data and dimensionality reduction by Principal component analysis
 
@@ -157,13 +147,16 @@ For PCA, it's important to scale all features (genes) to have same variance and 
  You can visualise the result using __Plot__ function.
  
  1. From 'Scanpy' package, click 'Plot with scanpy'
- 2. Set __Method used for plotting__ as __PCA: Plot PCA results, using 'pl.pca_overview'__.
- 3. Set __Keys for annotations of observations/cells or variables/genes__ as __donor,method,celltypes__.
- 3. Run
+ 2. Set __Method used for plotting__ as __PCA: Plot PCA results, using 'pl.pca'__.
+ 3. Set __Keys for annotations of observations/cells or variables/genes__ as __donor,method,celltype__.
+ 4. Run
+ 5. From 'Scanpy' package, click 'Plot with scanpy'
+ 6. Set __Method used for plotting__ as __PCA: Plot PCA results, using 'pl.pca_variance_ratio'__.
+ 7. Run with default
  
  ![Result5](Result_pca.png)
  
- .. describe
+The first scatter plots describes what kind of variables are mainly explained by PC1 and PC2. Second pca_variance_ratio plot shows how much of total variance is explained by each PC. This give you visual inspection tool to determine how many PCs to keep.
 
 ### 6. 2D projection by UMAP and visualising the result
 
@@ -175,7 +168,7 @@ PCA projects cell into space with 50 dimension by default in scanpy function. In
  4. Run with default options
  5. From 'Scanpy' package, click 'Plot with scanpy'
  6. Set __Method used for plotting__ as __Embeddings: Scatter plot in UMAP basis, using 'pl.umap'__.
- 7. set __Keys for annotations of observations/cells or variables/genes__ as __donor,method,celltypes__.
+ 7. set __Keys for annotations of observations/cells or variables/genes__ as __donor,method,celltype__.
 
 ![Result6](Result_umap.png)
 

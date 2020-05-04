@@ -171,7 +171,7 @@ PCA projects cell into space with 50 dimension by default in scanpy function. In
  6. Set __Method used for plotting__ as __Embeddings: Scatter plot in UMAP basis, using 'pl.umap'__.
  7. set __Keys for annotations of observations/cells or variables/genes__ as __donor,method,celltype__.
 
-![Result6](Result_umap.png)
+![Result6](Result_umap_regression(1).png)
 
 You will notice that same cell types have been split into different clusters, which are grouped based on donor or method. This is the sign of __batch_effect__, suggesting that there are some donor-wise variation and 10X chemistry-wise variation. Although they can be interesting aspect to deeply look into, in general we would prefer to have cells grouped based soley on biological variation. So it's time to think about how to remove batch effect.
 
@@ -191,7 +191,7 @@ We prepared simple case of batch effect so you don't expect to encounter such pr
  4. Run again 'RunPCA', 'ComputeGraph', 'RunUMAP', 'Plot:UMAP' as above.
  5. Compare result from regressed data with the previous one.
 
-![Result7](Result_umap_regression(1).png)
+![Result7](Result_umap.png)
 
 Now cell coming from different bath is mixed well and they are positioned based on celltype! You are all set to look into this data and play with it. While we have pre-supplied cell type annotations for the tutorial, for your new data, you will start here to cluster cells and assign cell type annotations to them.
 

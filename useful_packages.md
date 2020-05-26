@@ -8,3 +8,5 @@
 [NMF](http://www.billconnelly.net/?p=534)
 
 [harmonizome](http://amp.pharm.mssm.edu/Harmonizome/)
+
+[broad_scWorkshop] (https://broadinstitute.github.io/2019_scWorkshop/batch-effects.html)

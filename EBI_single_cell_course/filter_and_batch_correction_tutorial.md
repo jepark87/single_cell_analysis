@@ -76,10 +76,9 @@ We will start by visualising the distribution of number of genes detected per ce
 
 ![Step1](1_scatter.png)
 
- 1. Search 'plot' from Galaxy search toolbar
- 2. From 'Single-cell' package, click 'Plot with scanpy'
- 4. Set __Method used for plotting__ as __Generic: Scatter plot along observations or variable axes, using 'pl.scatter'__. 
- 5. Set __x- and y- coordinates__ with __'n_logcounts', 'n_loggenes'__ or __'n_loggenes', 'mito'__ or __'n_loggenes', 'doublet_scores'__'''
+ 1. At the left under the tools, click 'Scanpy' package and find 'Plot with scanpy'
+ 2. Set __Method used for plotting__ as __Generic: Scatter plot along observations or variable axes, using 'pl.scatter'__. 
+ 3. Set __x- and y- coordinates__ with __'n_logcounts', 'n_loggenes'__ or __'n_loggenes', 'mito'__ or __'n_loggenes', 'doublet_scores'__'
  
 ![Result1](Result1_1.png)
 

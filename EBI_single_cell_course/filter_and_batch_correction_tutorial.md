@@ -90,14 +90,13 @@ In this dataset, most cells with good gene number coverge (high n_genes) contain
 
 You can notice high doublet scores for some droplets. You would generally expect ~4% doublet rate if you aimed to recover 5000 cells. Generally, doublets have higher n_genes, as they contain genes from both cell types. But some cells do have more n_genes and other cell in general. So you should be careful about setting doublet filter based on n_genes. (Also, some cells have significanly less n_genes compared to others. So be careful for lower bound filters too!)
 
-![Result2](Result2.png)
-
 Scatter plot is good to compare relationship between QC measures. However, it is often difficult to compare distributions across multiple samples. For this purpose, let's draw some violin plots. You can simply change the step 4 and step 5 from above to:
 
 
  4. Set __Method used for plotting__ as __Generic: Violin plot, using 'pl.violin'__.
  5. Set __Keys for accessing variables__ as __Subset of variables in 'adata.var_names' or fields of '.obs'__ and provide comma separte list of __n_loggenes,n_logcounts,mito__. Also, set __The key of the observation grouping to consider__ as __batch__.
 
+![Result2](Result2.png)
 
 > Q: Which sample has the lowest coverage? Are there any difference between 10X chemistries?
 
